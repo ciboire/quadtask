@@ -1,0 +1,10 @@
+<%= link_to_remote  image_tag('checkbox-' + (task.is_crossed_out == true ? 'checked' : 'unchecked') + '.png',
+  :border => 0, :class => 'checkImage'),
+  :url => {:action => 'task_check', :id => task.id, :quadrant => quadrant},
+  :update => 'quadtaskinner' + task.id.to_s %>
+<span class=<%= "'" + (task.is_crossed_out == true ? "checked" : "unchecked") + "'" -%>>
+  <span id=<%= "'quadTaskTitle#{task.id}'" -%> class='quadTaskTitle'><%= task.title %></span>
+  <%= in_place_editor	"quadTaskTitle#{task.id}", 
+    { :url=> url_for(:action=>"task_edit" ,	:id=>task.id, :quadrant => quadrant), :cols => 25, :rows => 1,
+    :click_to_edit_text => 'edit task' } -%>
+</span>

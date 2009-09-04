@@ -1456,6 +1456,11 @@ Ajax.Updater = Class.create(Ajax.Request, {
         options = this.options;
 
     if (!options.evalScripts) responseText = responseText.stripScripts();
+    
+    // Patch by BRT specifically for quadtask; changes behavior of InPlaceEditor when entering a new task.  In
+    // this case the input text gets replaced by 'Enter new task...'.
+    if (responseText.substring(0,34) == 'try {\nElement.insert(\"createdTasks')
+        responseText = 'Enter new task...';
 
     if (receiver = $(receiver)) {
       if (options.insertion) {

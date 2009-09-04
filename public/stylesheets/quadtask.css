@@ -1,0 +1,278 @@
+/**********************************************************
+/*
+/*  In-place editing
+/*
+***********************************************************/
+
+.inplaceeditor-form
+{
+    display: inline-block;
+}
+
+.newTaskEditor .inplaceeditor-form
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+body 
+{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+html
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul, li
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header
+{
+    width: 100%;
+    height: 10%;
+    background-color: orange;
+}
+
+.containerRightWrapper
+{
+    float: right;
+    width: 100%;
+    height: 85%;
+}
+
+.containerRight
+{
+    margin-left: 180px;
+    height: 100%;
+    color: white;
+}
+
+
+.quadtree
+{
+    height: 97%;
+    width: 100%;
+}
+
+.quadWrapperImportantUrgent
+{
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+}
+
+.quadWrapperImportantNotUrgent
+{
+    float: right;
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+}
+
+.quadWrapperNotImportantUrgent
+{
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+}
+
+.quadWrapperNotImportantNotUrgent
+{
+    float: right;
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+}
+
+.quad
+{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+}
+
+.quadTextOuter
+{
+    height: 25px;
+}
+
+.quadText
+{
+    font-weight: 600;
+}
+
+.quadWrapperImportantUrgent .quadText
+{
+    color: #AA0000;
+}
+
+.quadWrapperImportantNotUrgent .quadText
+{
+    color: #00AA00;
+}
+
+.quadWrapperNotImportantUrgent .quadText
+{
+    color: black;
+}
+
+.quadWrapperNotImportantNotUrgent .quadText
+{
+    color: #666666;
+}
+
+.unorderedList
+{
+    min-width: 80%;
+    min-height: 60%;
+}
+.quadSquare
+{
+    height: 88%;
+    width: 100%;
+    overflow: auto;
+    background-color: white;
+    color: black;
+    border-style: groove;
+    border-width: 3px;
+}
+
+.quadWrapperImportantUrgent .quadSquare
+{
+    border-color: #AA0000;
+}
+
+.quadWrapperImportantNotUrgent .quadSquare
+{
+    border-color: #00AA00;
+}
+
+.quadWrapperNotImportantUrgent .quadSquare
+{
+    border-color: black;
+}
+
+.quadWrapperNotImportantNotUrgent .quadSquare
+{
+    border-color: #666666;
+}
+
+.containerLeft
+{
+    float: left;
+    width: 180px;
+    margin-right: -180px;
+    height: 85%;
+    background-color: brown;
+}
+
+.footer
+{
+    clear: both;
+    height: 5%;
+    width: 100%;
+    background-color: green;
+    color: red;
+}
+
+.quadTask
+{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.quadTaskTitle
+{
+    display: inline-block;
+    vertical-align: top;
+    max-width: 75%;
+}
+
+.checked .quadTaskTitle
+{
+    text-decoration: line-through;
+    color: #999999;
+}
+
+.unchecked .quadTaskTitle
+{
+    text-decoration: none;
+    color: black;
+}
+
+.checkImage
+{
+    vertical-align: middle;
+}
+
+.quadTaskHandle
+{
+    cursor: move;
+}
+
+.quadTaskHandleImage
+{
+    vertical-align: middle;
+}
+
+.quadTaskDelete
+{
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.quadTaskDeleteImage
+{
+    vertical-align: middle;
+}
+
+.newTask
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #999999;
+    border: solid 1px #999999;
+}
+
+.quadWrapperImportantUrgent .newTask
+{
+    color: #cc9999;
+    border-color: #cc9999;
+}
+
+.quadWrapperImportantNotUrgent .newTask
+{
+    color: #99cc99;
+    border-color: #99cc99;
+}
+
+.quadDelete
+{
+    float: right;
+    cursor: pointer;
+}

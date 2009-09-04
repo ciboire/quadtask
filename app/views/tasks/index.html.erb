@@ -1,0 +1,63 @@
+<div class="header">header here</div>
+
+<div class="containerLeft"> container left </div>
+
+<div class="containerRightWrapper">
+  <div class="containerRight">
+    <div class="quadtree">
+        
+      <% ['ImportantUrgent', 'ImportantNotUrgent', 'NotImportantUrgent', 'NotImportantNotUrgent'].each do |quadrant| %>
+        <div class=<%="'quadWrapper#{quadrant}'"-%>>
+          <div class="quad">
+            <div class="quadTextOuter">
+              <span class="quadText">
+                <% if quadrant == 'ImportantUrgent' %> IMPORTANT / URGENT 
+                <% elsif quadrant == 'ImportantNotUrgent' %> IMPORTANT / not urgent
+                <% elsif quadrant == 'NotImportantUrgent' %> not important / URGENT
+                <% else %> not important / not urgent
+                <% end %>
+              </span>
+              <span class="quadDelete">
+                <%= link_to_remote(image_tag('broom-bushy.png', :mouseover => 'broom-bushy-light.png', :border => 0,
+                  :title => 'remove checked tasks'), :url => { :action => "task_sweep", :quadrant => quadrant }) %>
+              </span>
+            </div>
+            <div class="quadSquare" id=<%= "'quad_square#{quadrant}'"-%>>
+              <ul id=<%="'createdTasks#{quadrant}'"-%> class="unorderedList" >
+                <% if quadrant == 'ImportantUrgent' %>
+                  <% @tasks_important_urgent.each do |task| %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                <% elsif quadrant == 'ImportantNotUrgent' %>
+                  <% @tasks_important_not_urgent.each do |task| %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                <% elsif quadrant == 'NotImportantUrgent' %>
+                  <% @tasks_not_important_urgent.each do |task| %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                <% else %>
+                  <% @tasks_not_important_not_urgent.each do |task| %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                <% end %>
+              </ul>
+              <div class="newTaskEditor"><div id=<%="'newTask#{quadrant}'"-%> class="newTask">Enter new task...</div></div>
+              <%= in_place_editor	"newTask#{quadrant}", 
+                {:url=> url_for(:action=>"task_create", :quadrant => quadrant), :cols => 40, :rows => 1,
+                :click_to_edit_text => 'add new task'} -%>
+              
+             
+            </div>
+          </div>  
+        </div>  
+      <% end %>
+      
+      <% ['ImportantUrgent', 'ImportantNotUrgent', 'NotImportantUrgent', 'NotImportantNotUrgent'].each do |q| %>
+        <%= sortable_element "createdTasks#{q}", :constraint => false, 
+          :containment => ['createdTasksNotImportantUrgent', 'createdTasksImportantUrgent', 'createdTasksImportantNotUrgent',
+          'createdTasksNotImportantNotUrgent'], :dropOnEmpty => true,
+          :url => {:action => 'task_sort', :quadrant => q}, :handle => 'quadTaskHandle' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="footer">footer here</div>
+

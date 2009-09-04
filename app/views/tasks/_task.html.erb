@@ -1,0 +1,7 @@
+
+  <span class='quadTaskHandle'>
+    <%= image_tag('hand-gray.png', :border => 0, :mouseover => 'hand.png', :class => 'quadTaskHandleImage')  -%>
+  </span>
+  <span id=<%= "'quadtaskinner" + task.id.to_s + "'" -%>>
+  <%= render :partial => 'title', :locals => {:task => task, :quadrant => quadrant} %>
+</span>

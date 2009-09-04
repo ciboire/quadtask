@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  is_crossed_out: false
+  is_important: false
+  is_urgent: false
+  quadtree_id: 1
+
+two:
+  title: MyString
+  is_crossed_out: false
+  is_important: false
+  is_urgent: false
+  quadtree_id: 1

@@ -870,7 +870,7 @@ Object.extend(Ajax.InPlaceEditor, {
   DefaultOptions: {
     ajaxOptions: { },
     autoRows: 3,                                // Use when multi-line w/ rows == 1
-    cancelControl: 'link',                      // 'link'|'button'|false
+    cancelControl: 'false',                      // 'link'|'button'|false
     cancelText: 'cancel',
     clickToEditText: 'Click to edit',
     externalControl: null,                      // id|elt
@@ -884,7 +884,7 @@ Object.extend(Ajax.InPlaceEditor, {
     htmlResponse: true,
     loadingClassName: 'inplaceeditor-loading',
     loadingText: 'Loading...',
-    okControl: 'button',                        // 'link'|'button'|false
+    okControl: 'false',                        // 'link'|'button'|false
     okText: 'ok',
     paramName: 'value',
     rows: 1,                                    // If 1 and multi-line, uses autoRows
@@ -893,9 +893,9 @@ Object.extend(Ajax.InPlaceEditor, {
     size: 0,
     stripLoadedTextTags: false,
     submitOnBlur: false,
-    textAfterControls: '',
-    textBeforeControls: '',
-    textBetweenControls: ''
+    textAfterControls: '    ',
+    textBeforeControls: '    ',
+    textBetweenControls: '    '
   },
   DefaultCallbacks: {
     callback: function(form) {
@@ -907,7 +907,10 @@ Object.extend(Ajax.InPlaceEditor, {
       new Effect.Highlight(element, {
         startcolor: this.options.highlightColor, keepBackgroundImage: true });
     },
-    onEnterEditMode: null,
+    onEnterEditMode: function(ipe) {
+        if (ipe.element.innerHTML == 'Enter new task...')    // Modified by BRT to make new-task entry default to blank.
+            ipe.element.innerHTML = '';
+    },
     onEnterHover: function(ipe) {
       ipe.element.style.backgroundColor = ipe.options.highlightColor;
       if (ipe._effect)
