@@ -62,7 +62,6 @@ var Droppables = {
   },
 
   isAffected: function(point, element, drop) {
-    Position.prepare();
     return (
       (drop.element!=element) &&
       ((!drop._containers) ||
@@ -70,7 +69,7 @@ var Droppables = {
       ((!drop.accept) ||
         (Element.classNames(element).detect(
           function(v) { return drop.accept.include(v) } ) )) &&
-      Position.withinIncludingScrolloffsets(drop.element, point[0], point[1]) );
+      Position.within(drop.element, point[0], point[1]) );
   },
 
   deactivate: function(drop) {
@@ -85,8 +84,7 @@ var Droppables = {
     this.last_active = drop;
   },
 
-  show: function(point, draggingObj) {
-    var element = draggingObj.element;
+  show: function(point, element) {
     if(!this.drops.length) return;
     var drop, affected = [];
 
@@ -95,16 +93,14 @@ var Droppables = {
         affected.push(drop);
     });
 
-    if(affected.length>0) {
-      Position.prepare();
+    if(affected.length>0)
       drop = Droppables.findDeepestChild(affected);
-     }
 
     if(this.last_active && this.last_active != drop) this.deactivate(this.last_active);
     if (drop) {
-      Position.withinIncludingScrolloffsets(drop.element, point[0], point[1]);
+      Position.within(drop.element, point[0], point[1]);
       if(drop.onHover)
-        drop.onHover(draggingObj, drop.element, Position.overlap(drop.overlap, drop.element));
+        drop.onHover(element, drop.element, Position.overlap(drop.overlap, drop.element));
 
       if (drop != this.last_active) Droppables.activate(drop);
     }
@@ -317,8 +313,6 @@ var Draggable = Class.create({
       var pointer = [Event.pointerX(event), Event.pointerY(event)];
       var pos     = Position.cumulativeOffset(this.element);
       this.offset = [0,1].map( function(i) { return (pointer[i] - pos[i]) });
-      
-      this.scrollOffset = Position.realOffset(this.element);
 
       Draggables.activate(this);
       Event.stop(event);
@@ -364,7 +358,7 @@ var Draggable = Class.create({
 
     if(!this.options.quiet){
       Position.prepare();
-      Droppables.show(pointer, this);
+      Droppables.show(pointer, this.element);
     }
 
     Draggables.notify('onDrag', this, event);
@@ -376,27 +370,21 @@ var Draggable = Class.create({
       this.stopScrolling();
 
       var p;
-      var do_scroll = false;
       if (this.options.scroll == window) {
         with(this._getWindowScroll(this.options.scroll)) { p = [ left, top, left+width, top+height ]; }
-        do_scroll = true;
-      } else if (this.element.parentNode && this.options.scroll == this.element.parentNode) {
+      } else {
         p = Position.page(this.options.scroll);
         p[0] += this.options.scroll.scrollLeft + Position.deltaX;
         p[1] += this.options.scroll.scrollTop + Position.deltaY;
         p.push(p[0]+this.options.scroll.offsetWidth);
         p.push(p[1]+this.options.scroll.offsetHeight);
-        do_scroll = true;
       }
-      
-      if (do_scroll) {
-        var speed = [0,0];
-        if(pointer[0] < (p[0]+this.options.scrollSensitivity)) speed[0] = pointer[0]-(p[0]+this.options.scrollSensitivity);
-        if(pointer[1] < (p[1]+this.options.scrollSensitivity)) speed[1] = pointer[1]-(p[1]+this.options.scrollSensitivity);
-        if(pointer[0] > (p[2]-this.options.scrollSensitivity)) speed[0] = pointer[0]-(p[2]-this.options.scrollSensitivity);
-        if(pointer[1] > (p[3]-this.options.scrollSensitivity)) speed[1] = pointer[1]-(p[3]-this.options.scrollSensitivity);
-        this.startScrolling(speed);
-      }
+      var speed = [0,0];
+      if(pointer[0] < (p[0]+this.options.scrollSensitivity)) speed[0] = pointer[0]-(p[0]+this.options.scrollSensitivity);
+      if(pointer[1] < (p[1]+this.options.scrollSensitivity)) speed[1] = pointer[1]-(p[1]+this.options.scrollSensitivity);
+      if(pointer[0] > (p[2]-this.options.scrollSensitivity)) speed[0] = pointer[0]-(p[2]-this.options.scrollSensitivity);
+      if(pointer[1] > (p[3]-this.options.scrollSensitivity)) speed[1] = pointer[1]-(p[3]-this.options.scrollSensitivity);
+      this.startScrolling(speed);
     }
 
     // fix AppleWebKit rendering
@@ -505,16 +493,6 @@ var Draggable = Class.create({
 
     if(style.visibility=="hidden") style.visibility = ""; // fix gecko rendering
   },
-  
-  adjustScrollOffset: function()  { 
-   		    var newScrollOffset = Position.realOffset(this.element); 
-   	    [0,1].each(function(i) { 
-   		       if (this.scrollOffset[i] != newScrollOffset[i]) { 
-   		         this.offset[i] += this.scrollOffset[i] - newScrollOffset[i]; 
-   		         this.scrollOffset[i] = newScrollOffset[i]; 
-   		       } 
-   		    }.bind(this)); 
-   		   },
 
   stopScrolling: function() {
     if(this.scrollInterval) {
@@ -546,11 +524,9 @@ var Draggable = Class.create({
       this.options.scroll.scrollLeft += this.scrollSpeed[0] * delta / 1000;
       this.options.scroll.scrollTop  += this.scrollSpeed[1] * delta / 1000;
     }
-    
-    this.scrollOffset = Position.realOffset(this.element);
 
     Position.prepare();
-    Droppables.show(Draggables._lastPointer, this);
+    Droppables.show(Draggables._lastPointer, this.element);
     Draggables.notify('onDrag', this);
     if (this._isScrollChild) {
       Draggables._lastScrollPointer = Draggables._lastScrollPointer || $A(Draggables._lastPointer);
@@ -772,8 +748,7 @@ var Sortable = {
       element, options.only, options.tree ? true : false, options.treeTag);
   },
 
-  onHover: function(draggingObj, dropon, overlap) {
-    var element = draggingObj.element;
+  onHover: function(element, dropon, overlap) {
     if(Element.isParent(dropon, element)) return;
 
     if(overlap > .33 && overlap < .66 && Sortable.options(dropon).tree) {
@@ -784,7 +759,6 @@ var Sortable = {
         var oldParentNode = element.parentNode;
         element.style.visibility = "hidden"; // fix gecko rendering
         dropon.parentNode.insertBefore(element, dropon);
-        draggingObj.adjustScrollOffset();
         if(dropon.parentNode!=oldParentNode)
           Sortable.options(oldParentNode).onChange(element);
         Sortable.options(dropon.parentNode).onChange(element);
@@ -796,7 +770,6 @@ var Sortable = {
         var oldParentNode = element.parentNode;
         element.style.visibility = "hidden"; // fix gecko rendering
         dropon.parentNode.insertBefore(element, nextElement);
-        draggingObj.adjustScrollOffset();
         if(dropon.parentNode!=oldParentNode)
           Sortable.options(oldParentNode).onChange(element);
         Sortable.options(dropon.parentNode).onChange(element);
@@ -804,8 +777,7 @@ var Sortable = {
     }
   },
 
-  onEmptyHover: function(draggingObj, dropon, overlap) {
-    var element = draggingObj.element;
+  onEmptyHover: function(element, dropon, overlap) {
     var oldParentNode = element.parentNode;
     var droponOptions = Sortable.options(dropon);
 
@@ -833,7 +805,6 @@ var Sortable = {
 
       dropon.insertBefore(element, child);
 
-      draggingObj.adjustScrollOffset();
       Sortable.options(oldParentNode).onChange(element);
       droponOptions.onChange(element);
     }
