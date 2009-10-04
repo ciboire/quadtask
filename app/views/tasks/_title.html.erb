@@ -3,8 +3,20 @@
   :url => {:action => 'task_check', :id => task.id, :quadrant => quadrant},
   :update => 'quadtaskinner' + task.id.to_s %>
 <span class=<%= "'" + (task.is_crossed_out == true ? "checked" : "unchecked") + "'" -%>>
-  <span id=<%= "'quadTaskTitle#{task.id}'" -%> class='quadTaskTitle'><%= task.title %></span>
+  <span class='quadTaskGroup'>
+    <span id=<%= "'quadTaskTitle#{task.id}'" -%> class='quadTaskTitle'><%= task.title %></span>
+      <span id=<%= "'quadTaskHandle#{task.id}'" -%> style="visibility:hidden;cursor:pointer">
+        <%= image_tag('pencil-light.png', :mouseover => 'pencil-hot.png', :border => 0, :title => 'edit task') %>
+      </span>
+      <span id=<%= "'quadTaskDelete#{task.id}'" -%> style="padding-left:6px;visibility:hidden;cursor:pointer">
+        <%= link_to_remote(image_tag('remove-gray.png', :mouseover => 'remove.png', :border => 0,
+          :title => 'delete task', :class => 'removeIcon'), :url => {
+          :action => "task_delete", :quadrant => quadrant, :task_id => task.id }) %>
+      </span>
+    </span>
+  </span>
+
   <%= in_place_editor	"quadTaskTitle#{task.id}", 
     { :url=> url_for(:action=>"task_edit" ,	:id=>task.id, :quadrant => quadrant), :cols => 25, :rows => 1,
-    :click_to_edit_text => 'edit task' } -%>
+    :click_to_edit_text => 'edit task', :external_control => "quadTaskHandle#{task.id}", :external_control_only => true } -%>
 </span>

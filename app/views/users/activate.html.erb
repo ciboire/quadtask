@@ -1,0 +1,18 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'created_password'} %>
+
+
+<div class="containerLeft"></div>
+<div class="containerRightWrapper">
+  <div class="containerRight">
+    <div class="signup">
+      <div class="signupInner">
+        <div class="flashNotice"<%= flash[:notice] %></div>
+        <br />
+        <br />
+        <%= link_to "Click here" home_url -%> to start using your Quadtask now!
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer"></div>

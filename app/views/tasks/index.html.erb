@@ -1,6 +1,25 @@
-<div class="header">header here</div>
+<%= render :partial => 'header', :locals => {:comes_from => "index"} %>
 
-<div class="containerLeft"> container left </div>
+<div class="containerLeft">
+  <div class="quadtreeRectangle">
+    <ul id="quadtreeListId" class="quadtreeList">
+      <% @quadtrees.each do |tree| %>
+        <%= render :partial => 'quadtree_item', :locals => {:tree => tree} %>
+      <% end %>
+    </ul>
+    
+    <div id="quadtreeAddendum">
+      <% if @quadtrees.size < 3 || (@quadtrees.size >= 3 && current_user.membership_level != "free") %>
+        <%= link_to_remote("Add a quad", :url => {:action => :tree_create}) -%>
+      <% else %>
+        Upgrade for more quads
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= sortable_element "quadtreeListId", :constraint => 'vertical', 
+  :containment => ['quadtreeListId'], :url => {:action => 'tree_sort'}, :handle => 'quadtreeItem' %>
 
 <div class="containerRightWrapper">
   <div class="containerRight">
@@ -10,17 +29,17 @@
         <div class=<%="'quadWrapper#{quadrant}'"-%>>
           <div class="quad">
             <div class="quadTextOuter">
-              <span class="quadText">
+              <div class="quadText">
                 <% if quadrant == 'ImportantUrgent' %> IMPORTANT / URGENT 
                 <% elsif quadrant == 'ImportantNotUrgent' %> IMPORTANT / not urgent
                 <% elsif quadrant == 'NotImportantUrgent' %> not important / URGENT
                 <% else %> not important / not urgent
                 <% end %>
-              </span>
-              <span class="quadDelete">
-                <%= link_to_remote(image_tag('broom-bushy.png', :mouseover => 'broom-bushy-light.png', :border => 0,
-                  :title => 'remove checked tasks'), :url => { :action => "task_sweep", :quadrant => quadrant }) %>
-              </span>
+                <div class="quadDelete">
+                  <%= link_to_remote(image_tag('trash-light.png', :mouseover => 'trash-hot.png', :border => 0,
+                    :title => 'remove checked tasks', :class => 'deleteCan'), :url => { :action => "task_sweep", :quadrant => quadrant }) %>
+                </div>
+              </div>
             </div>
             <div class="quadSquare" id=<%= "'quad_square#{quadrant}'"-%>>
               <ul id=<%="'createdTasks#{quadrant}'"-%> class="unorderedList" >
@@ -38,10 +57,10 @@
                   <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
                 <% end %>
               </ul>
-              <div class="newTaskEditor"><div id=<%="'newTask#{quadrant}'"-%> class="newTask">Enter new task...</div></div>
-              <%= in_place_editor	"newTask#{quadrant}", 
-                {:url=> url_for(:action=>"task_create", :quadrant => quadrant), :cols => 40, :rows => 1,
-                :click_to_edit_text => 'add new task'} -%>
+              <div id=<%= "'newTaskEditorOuter#{quadrant}'" -%>>
+                <%= render :partial => 'new_task_editor', :locals => {:quadrant => quadrant} %>
+              </div>
+              
               
              
             </div>
@@ -53,11 +72,16 @@
         <%= sortable_element "createdTasks#{q}", :constraint => false, 
           :containment => ['createdTasksNotImportantUrgent', 'createdTasksImportantUrgent', 'createdTasksImportantNotUrgent',
           'createdTasksNotImportantNotUrgent'], :dropOnEmpty => true,
-          :url => {:action => 'task_sort', :quadrant => q}, :handle => 'quadTaskHandle' %>
+          :url => {:action => 'task_sort', :quadrant => q}, :handle => 'quadTaskTitle' %>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="footer">footer here</div>
+  
+  <div class="footer">
+    <div style="height:1px;width:140px;background-color:#447744"></div>
+    
+    footer here</div>
+
 

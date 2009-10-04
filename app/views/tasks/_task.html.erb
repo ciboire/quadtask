@@ -1,7 +1,6 @@
 
-  <span class='quadTaskHandle'>
-    <%= image_tag('hand-gray.png', :border => 0, :mouseover => 'hand.png', :class => 'quadTaskHandleImage')  -%>
-  </span>
-  <span id=<%= "'quadtaskinner" + task.id.to_s + "'" -%>>
+  <span id=<%= "'quadtaskinner" + task.id.to_s + "'" -%>
+    onmouseover=<%="$('quadTaskHandle#{task.id}').style.visibility='visible';$('quadTaskDelete#{task.id}').style.visibility='visible';" -%>
+    onmouseout=<%= "$('quadTaskHandle#{task.id}').style.visibility='hidden';$('quadTaskDelete#{task.id}').style.visibility='hidden';" -%>>
   <%= render :partial => 'title', :locals => {:task => task, :quadrant => quadrant} %>
 </span>

@@ -29,6 +29,7 @@ body
 
 html
 {
+    height: 100%;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -43,31 +44,244 @@ ul, li
     padding: 0;
 }
 
-.header
+p
 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.icon
+{
+    position:absolute;
+    display:inline-block;
+    top: 15px;
+    left: 55px;
+}
+
+.iconLink
+{
+    outline:none;
+}
+
+.iconImage
+{
+    background-color: #006010;
+    height:30px;
+    vertical-align:middle;
+}
+
+.headerBar
+{
+    float:right;
+    margin-top:15px;
+    margin-right: 30px;
+    background-color: #006010;
+    font-size: 1.3em;
+}
+
+a.headerBarLink
+{
+    background-color: #006010;
+    text-decoration: none;
+    color: #bbffbb;
+    font-weight:600;
+}
+
+a.headerBarLink:hover
+{
+    color: #77ff77;
+}
+
+.bigfont
+{
+    font-size: 4em;
+}
+
+.forgotPassword
+{
+    font-size: 0.5em;
+}
+
+a.forgotPassword
+{
+    color: #000044;
+    text-decoration: underline;
+    background-color:transparent;
+}
+
+.topHeader
+{
+    position: absolute;
     width: 100%;
     height: 10%;
-    background-color: orange;
+    background-color: #006010;
+    overflow:auto;
 }
+
+.notice
+{
+    text-align:center;
+    padding: 20px;
+    border: 1px solid #008020;
+    color: #008020;
+    margin: 0px;
+    margin-bottom: 40px;
+    background-color: #eeffee;
+}
+
+.alert
+{
+    text-align:center;
+    padding: 20px;
+    margin: 0px;
+    margin-bottom: 40px;
+    border: 1px solid #bb0000;
+    color: #bb0000;
+    background-color: #ffeeee;
+}
+
+.signup
+{
+    height: 100%;
+    width: 100%;
+    text-align:center;
+    background-color: #ddffdd;
+    overflow:auto;
+}
+
+.signupInner
+{
+    display:inline-block;
+    text-align:left;
+    font-size:1.7em;
+    line-height: 1.2em;
+    width:80%;
+    padding: 40px;
+    border: 10px solid #008020;
+    margin: 40px;
+}
+
+.signupInnerLeft
+{
+    float:left;
+    font-size:2.0em;
+    color: #008020;
+    margin-top: 20px;
+    width: 40%;
+}
+
+.signupInnerRight
+{
+    float:right;
+    padding: 10px;
+    border: 1px solid #008020;
+    width: 40%;
+}
+
+a.loginLink
+{
+    background-color: #ddffdd;
+    text-decoration: none;
+    color: #c000c0;
+}
+
+a.loginLink:hover
+{
+    text-decoration: underline;
+    color: #c000c0;
+}
+
+
+a.signupLink
+{
+    background-color: #ddffdd;
+    text-decoration: none;
+    color: #c000c0;
+}
+
+a.signupLink:hover
+{
+    text-decoration: underline;
+    color: #c000c0;
+}
+
+.signupErrors
+{
+    text-align:left;
+}
+
+.signupErrors ul
+{
+    margin-left:20px;
+}
+
+.login
+{
+    height: 100%;
+    width: 100%;
+    text-align:center;
+    background-color: #ddffdd;
+    overflow:auto;
+}
+
+.loginInner
+{
+    display:inline-block;
+    text-align:left;
+    font-size:1.7em;
+    line-height: 1.2em;
+    width:50%;
+    padding: 40px;
+    border: 10px solid #008020;
+    margin: 40px;
+}
+
+.loginInnerLeft
+{
+    float:left;
+    font-size:2.0em;
+    color: #008020;
+    margin-top: 20px;
+    width: 40%;
+}
+
+.loginInnerRight
+{
+    float:right;
+    padding: 10px;
+    border: 1px solid #008020;
+    width: 40%;
+}
+
+
+.welcome
+{
+    width: 100%;
+    height: 100%;
+    background-color:#ffffff;
+}
+
 
 .containerRightWrapper
 {
-    float: right;
+    position: absolute;
     width: 100%;
     height: 85%;
+    min-height:85%;
+    top: 10%;
 }
 
 .containerRight
 {
-    margin-left: 180px;
+    margin-left: 140px;
     height: 100%;
-    color: white;
+    background-color: white;
 }
 
 
 .quadtree
 {
-    height: 97%;
+    height: 100%;
     width: 100%;
 }
 
@@ -108,36 +322,45 @@ ul, li
     left: 5%;
     height: 90%;
     width: 90%;
+    overflow:none;
 }
 
 .quadTextOuter
 {
-    height: 25px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 12%;
+    overflow:hidden;
 }
 
 .quadText
 {
+    display: inline-block;
+    position: absolute;
+    bottom: 5px;
     font-weight: 600;
+    width: 100%;
 }
 
 .quadWrapperImportantUrgent .quadText
 {
-    color: #AA0000;
+    color: #cc9999;
 }
 
 .quadWrapperImportantNotUrgent .quadText
 {
-    color: #00AA00;
+    color: #99cc99;
 }
 
 .quadWrapperNotImportantUrgent .quadText
 {
-    color: black;
+    color: #999999;
 }
 
 .quadWrapperNotImportantNotUrgent .quadText
 {
-    color: #666666;
+    color: #999999;
 }
 
 .unorderedList
@@ -152,46 +375,56 @@ ul, li
     overflow: auto;
     background-color: white;
     color: black;
-    border-style: groove;
-    border-width: 3px;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .quadWrapperImportantUrgent .quadSquare
 {
     border-color: #AA0000;
+    border-width: 0px;
+    background-color: #fff0f0;
 }
 
 .quadWrapperImportantNotUrgent .quadSquare
 {
     border-color: #00AA00;
+    border-width: 0px;
+    background-color:#f0fff0;
 }
 
 .quadWrapperNotImportantUrgent .quadSquare
 {
-    border-color: black;
+    border-width: 0px;
+    background-color:#f0f0f0;
 }
 
 .quadWrapperNotImportantNotUrgent .quadSquare
 {
-    border-color: #666666;
+    border-width: 0px;
+    background-color:#f0f0f0;
 }
 
 .containerLeft
 {
-    float: left;
-    width: 180px;
-    margin-right: -180px;
+    position: absolute;
+    width: 140px;
+    top: 10%;
+    margin-right: -140px;
     height: 85%;
-    background-color: brown;
+    background-color: #006010;
+    z-index: 100;
 }
 
 .footer
 {
-    clear: both;
+    position: absolute;
     height: 5%;
     width: 100%;
-    background-color: green;
+    top:95%;
+    background-color: #006010;
     color: red;
+    overflow:hidden;
 }
 
 .quadTask
@@ -203,6 +436,11 @@ ul, li
 }
 
 .quadTaskTitle
+{
+    cursor: pointer;
+}
+
+.quadTaskGroup
 {
     display: inline-block;
     vertical-align: top;
@@ -281,3 +519,217 @@ ul, li
 {
     font-weight: 700;
 }
+
+.deleteCan
+{
+    text-align:right;
+}
+
+.removeIconGreen
+{
+    background-color:#00ff00;
+}
+
+.removeIcon
+{
+    background-color:transparent;
+}
+
+.quadtreeItem
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-top: 1px solid #447744;
+    border-bottom: 1px solid #447744;
+    cursor: pointer;
+    margin-bottom: -1px;
+}
+
+.first .quadtreeItem
+{
+    margin-top: 0px;
+}
+
+
+.quadtreeTitle
+{
+    cursor: pointer;
+}
+
+.quadtreeRectangle
+{
+    height:100%;
+}
+
+.quadtreeList
+{
+}
+
+#quadtreeAddendum
+{
+    padding-top: 10px;
+}
+
+.cl {
+    font-size:0;
+    line-height:0;
+    height:0;
+    display:block;
+    clear:both;
+}
+
+
+
+/* Isolated Color Section (just font theme colors - no bg colors - no neutral colors) */
+/* To make customizing the theme colors a bit easier, I've isolated all the font-color rules here. No other styling, just the font colors. */
+/* All other theme colors (graphics, bgs, etc.) are controlled by images inside the /css/images/ folder. */
+#navigation li a:hover{color:#58b12f; }
+#navigation li a.green{color:#58b12f !important; }
+
+a{ color:#58b12f; }
+a:hover{ color:#2e790b; }
+
+.green{color:#58b12f; }
+h4{color:#58b12f; }
+.heading h2 span{color:#58b12f; }
+.frame #header h3{color:#b6d896; }
+.buttons a:hover{color: #b6d896 }
+#footer ul a:hover{ color:#b6d896; }
+
+
+
+/* Main Section */
+body{
+    background:#fff ;
+    font-family:"lucida sans",arial, sans-serif;
+    color:#666;
+    font-size:12px;
+    line-height:18px;
+}
+a{text-decoration: none; }
+a img{border:0; }
+.shell{width:950px; margin:0 auto; }
+
+
+/* Header */
+#header{height:116px; background:url(/images/header.gif) repeat-x 0 0; overflow:hidden; position:relative; margin-top:-30px; }
+.frame #header{height:328px; background:url(/images/header2.gif) repeat-x}
+.frame #header .slogan {background:url(/images/creatica.jpg) no-repeat right 0; width:945px; height:192px; margin-top:-30px; padding-top:53px; position:relative; padding-left:9px; }
+.frame #header h2{font-size: 29px; line-height:29px; color:#fff; text-transform: uppercase; width:450px; height:70px; overflow:hidden;  position:relative; text-align: left; font-weight: bold;}
+.frame #header h3{font-size: 17px; text-transform: uppercase; width:450px; line-height:17px; font-weight: bold; position:relative; text-align: left;}
+.frame #header h1#logo a{background:url(/images/logo2.gif); height:70px;}
+.frame #header h1#logo {padding-top:27px}
+
+h1#logo{
+	background-image: none;
+	font-size: 0;
+	line-height:0;
+	width:218px;
+	height:86px;
+	padding-top:10px;
+	float: left;
+	display: inline;
+}
+h1#logo a{
+	display: block;
+	text-indent: -4000px;
+	height:86px;
+	background:url(/images/logo.png);
+}
+h3{text-transform: uppercase; font-size: 16px; }
+h4{font-size: 12px;}
+#right-area{margin:0 0 0 auto;}
+
+
+
+
+
+/* Main Content */
+#content{background:#fff url(/images/bottom-bg.gif) repeat-x 0 bottom; }
+
+.heading{ height:82px; padding-top:32px; background:url(/images/bg.gif) repeat-x 0 0; }
+.heading h2{ 
+	text-transform: uppercase; 
+	font-size: 24px; 
+	font-weight: normal; 
+	float: left; 
+	display: inline; 
+	color:#2e2e2e; 
+	line-height:24px; 
+	width:400px; 
+	padding-top:10px;
+}
+	
+.heading h3{font-weight: bold; color:#2e2e2e; width:470px; float: left; display: inline; text-align: left; line-height:10px; top:-8px; position:relative; text-transform:none;  }
+.heading h3 span {display:block; position:relative; width:470px; font-size: 1.5em; line-height:16px; padding-left:9px;  }
+
+.heading h3 { font-family: Georgia, Times, serif; text-transform: none; height: 25px; font-size: 1.3em; font-weight:normal; letter-spacing: 0px; }
+.heading h3 span { font-size:18px; font-style: italic; line-height:28px;  height: 25px; padding-left: 4px;}
+.heading h3.right{float:right; }
+
+#main{background:url(/images/main.gif) no-repeat; padding-top:27px}
+
+
+/* Left Column */
+.article{width:590px; float: left; display: inline; padding-left:9px; }
+.article p{padding-bottom:16px}
+.article h3{padding-bottom:17px; padding-top:3px; color:#2e2e2e; text-align: left;}
+.article ul{list-style-type: none; padding-left:25px;}
+.article li{background:url(/images/bul.gif) no-repeat 0 7px; padding-left:11px; padding-bottom:20px}
+
+/* Gallery Specific Styles */
+.gallery-container h3{padding-bottom:17px; padding-top:3px; padding-left: 6px; color:#2e2e2e; text-align: left;}
+.gallery-container img{margin: 6px; padding:0px; text-align: left;}
+.gallerynav {float: right; margin-top:-39px; margin-right:16px;}
+.gallerynav img {margin: 0;}
+.gallerynav-footer {height:51px;}
+
+/* Blog Specific Styles */
+.blogentry {margin-bottom: 40px;}
+.blogentry img{padding: 0 10px;}
+.blogentry .meta{background:transparent url(/images/dot.gif) repeat-x scroll 0 25px;clear:both;color:#999999;font-size:10px; height:30px;}
+.blognav-footer {height:51px; margin-top: -20px;}
+
+/* Media Specific Styles */
+.mediaentry {margin-bottom: 40px;}
+.mediaentry h4 {margin: 10px 0;}
+.mediaentry img{padding: 0 10px 10px 0px;}
+
+/* Right Column */
+.rightside{ width:300px; float:right; margin-top: 30px;}
+.graphic{background:url(/images/mid.gif) repeat-y; width:295px; margin-bottom:25px}
+.graphic .top{background:url(/images/top.gif) no-repeat; width:295px;}
+.graphic .bottom{background:url(/images/btm.gif) no-repeat 0 bottom; width:295px; padding:12px 0}
+.graphic .bottom img{display: block; width:270px; margin:0 auto}
+
+.sidebar-form{background:url(/images/mid.gif) repeat-y; width:295px; margin-bottom:25px}
+.sidebar-form .top{background:url(/images/grey-top.gif) no-repeat; width:295px;}
+.sidebar-form .bottom{background:url(/images/btm.gif) no-repeat 0 bottom; width:275px; padding-left:20px; padding-bottom:20px}
+.sidebar-form .bottom h3{font-weight: bold; color:#2e2e2e; line-height:16px; padding-top:12px; padding-bottom:15px}
+.sidebar-form .bottom p.desc{padding-bottom:15px;line-height:18px; padding-top:15px}
+.sidebar-form p{line-height:24px; }
+.sidebar-form p strong{color:#000; }
+
+
+.buttons{margin:0 0 0 auto; width:440px;}
+.buttons .last{margin-right:0}
+.buttons a{
+background:transparent url(/images/green-btn.gif) no-repeat scroll 0 0;
+color:#FFFFFF;
+display:inline;
+float:left;
+font-size:16px;
+font-weight:bold;
+height:28px;
+line-height:16px;
+margin-right:18px;
+padding-bottom:4px;
+padding-left:50px;
+padding-top:12px;
+text-decoration:none;
+text-transform:uppercase;
+width:160px;
+font-family:Helvetica, Arial, sans-serif
+}
+

@@ -1,0 +1,36 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'signup'} %>
+
+
+<div class="containerLeft"></div>
+<div class="containerRightWrapper">
+  <div class="containerRight">
+    <div class="signup">
+
+      <div class="signupInner">
+        <center>
+          <%= error_messages_for :user, :header_message => "Please Try Again!", 
+          :message => "<br />There were some problems with your entries:", :class => "signupErrors" %>
+        </center>
+        <div style="height:20px"></div>
+        <div class="signupInnerLeft">SIGN UP<br /><br />
+          <font style="font-size:0.4em">Sign up for your free Quadtask account.  If you already have one, you need
+          to <%= link_to "login", login_url, :class => "loginLink" -%> instead.</font>
+        </div>
+        <div class="signupInnerRight">
+          <% form_for :user, :url => users_path do |f| -%>
+          <b><label for="email">Email</label</b><br/>
+          <%= f.text_field :email %><br /><br />
+          <b><label for="password">Password</label></b><br/>
+          <%= f.password_field :password %><br /><br />
+          <b><label for="password_confirmation">Confirm Password</label></b><br />
+          <%= f.password_field :password_confirmation %><br /><br />
+          <%= submit_tag 'Sign up' %>
+          <% end -%>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer"></div>

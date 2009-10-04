@@ -1,0 +1,34 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'login'} %>
+
+
+<div class="containerLeft"></div>
+<div class="containerRightWrapper">
+  <div class="containerRight">
+    <div class="login">
+      <div class="loginInner">
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert"><%= flash[:alert] %></div>
+        <% end %>
+       <div class="loginInnerLeft">LOGIN<br /><br />
+         <font style="font-size:0.4em">Log into your Quadtask account.  If you do not have one, you need
+           to <%= link_to "sign up", signup_url, :class => "signupLink" -%> first.</font></div>
+        <div class="loginInnerRight">
+          <% form_tag session_path do -%>
+            <label for="email"><b>Email</b></label><br/>
+            <%= text_field_tag 'email' %><br /><br />
+            <label for="password"><b>Password</b></label><br/>
+            <%= password_field_tag 'password' %> <br />
+            <%= check_box_tag 'remember_me' %><label for="remember_me"><font size=-1>Remember me</font></label><br /><br />
+            <%= submit_tag 'Log in' %> <br />
+            <%= link_to 'Forgot Password?', forgot_password_url, htmloptions = {:class => "forgotPassword"} %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer"></div>

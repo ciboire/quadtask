@@ -1,0 +1,5 @@
+<% if quadtrees.size < 3 || (quadtrees.size >= 3 && current_user.membership_level != "free") %>
+  <%= link_to_remote("Add a quad", :url => {:action => :tree_create}) -%>
+<% else %>
+  Upgrade for more quads
+<% end %>

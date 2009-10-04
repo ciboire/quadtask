@@ -1,0 +1,24 @@
+<div class="topHeader">
+  
+  <div class="icon">
+    <%= link_to(image_tag('justQuadtask.png', :border => 0, :class => "iconImage"), :controller => :tasks, :action => :home, 
+    :class => "iconLink") -%>
+  </div>
+
+  <% unless comes_from == 'login'  ||  comes_from == 'signup' || comes_from == 'forgot_password' \
+    || comes_from = 'created_password' %>
+    
+    <div style="height:10%;float:left"></div>
+    <div class="headerBar">
+      <%= link_to "LOGOUT", logout_url, :class => "headerBarLink"-%>
+    </div>
+    <div class="headerBar">
+      <%= link_to "FACEBOOK", "http://xyz.com", :class => "headerBarLink" -%>
+    </div>
+    <div class="headerBar">
+      <%= link_to "UPGRADE", "http://xyz.com", :class => "headerBarLink" -%>
+    </div>
+  
+  <% end %>
+  
+</div>

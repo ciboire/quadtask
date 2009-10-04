@@ -16,7 +16,7 @@ a:hover { color: blue;}
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
-  display: table;
+  display:table;
 }
 
 #errorExplanation {
@@ -24,7 +24,7 @@ a:hover { color: blue;}
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   background-color: #f0f0f0;
 }
 

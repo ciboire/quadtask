@@ -1,0 +1,14 @@
+ <% more_available = (current_user.membership_level != "free" || Task.count(:all, :conditions => {:quadtree_id => session[:quadtree_id]}) <= 9) ? true : false %>
+  
+<% if more_available %>
+<div class="newTaskEditor">
+  <div id=<%="'newTask#{quadrant}'"-%> class="newTask">Enter new task...</div>
+</div>
+<%= in_place_editor	"newTask#{quadrant}", 
+  {:url=> url_for(:action=>"task_create", :quadrant => quadrant), :cols => 40, :rows => 1,
+  :click_to_edit_text => 'add new task'} -%>
+<% else %>
+<div class="newTaskEditor">
+  <div id=<%="'newTask#{quadrant}'"-%> class="newTask"><%= link_to "Upgrade for unlimited tasks", "/index" %></div>
+</div>
+<% end %>

@@ -55,11 +55,14 @@ module InPlaceMacrosHelper
     js_options['size'] = options[:size] if options[:size]
     js_options['highlightColor'] = options[:highlight_color] if options[:highlight_color]
     js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
+    js_options['externalControlOnly'] = "'#{options[:external_control]}'" if options[:external_control]
     js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
     js_options['ajaxOptions'] = options[:options] if options[:options]
     js_options['htmlResponse'] = !options[:script] if options[:script]
     js_options['callback']   = "function(form) { return #{options[:with]} }" if options[:with]
     js_options['clickToEditText'] = %('#{options[:click_to_edit_text]}') if options[:click_to_edit_text]
+    js_options['highlightColor'] = %('#{options[:highlight_color]}') if options[:highlight_color]
+    js_options['highlightEndColor'] = %('#{options[:highlight_end_color]}') if options[:highlight_end_color]
     js_options['textBetweenControls'] = %('#{options[:text_between_controls]}') if options[:text_between_controls]
     function << (', ' + options_for_javascript(js_options)) unless js_options.empty?
     

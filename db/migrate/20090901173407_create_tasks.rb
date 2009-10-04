@@ -2,10 +2,10 @@ class CreateTasks < ActiveRecord::Migration
   def self.up
     create_table :tasks do |t|
       t.string :title
-      t.boolean :is_crossed_out
-      t.boolean :is_important
-      t.boolean :is_urgent
-      t.integer :quadtree_id
+      t.boolean :is_crossed_out, :default => false
+      t.boolean :is_important, :default => false
+      t.boolean :is_urgent, :default => false
+      t.integer :quadtree_id, :default => 0
 
       t.timestamps
     end
