@@ -5,27 +5,27 @@
 .full_widget 
 .connect_top {
 	border: none;
-	background-color: #000000;
+	background-color: #99ff99;
 }
 .fan_box
 .full_widget {
 	border: none;
 }
 .connect_top a {
-	color: #ff0000;
+	color: #008020;
 }
 .connect_top a:hover {
-	color: #ff7777;	
+	color: #00a040;	
 }
 .fan_box
 .connections {
-	background-color: #000000;
+	background-color: #99ff99;
 	border: none;
-	color: #ff0000;
+	color: #008020;
 }
 .fan_box
 .connections_grid
 .grid_item
 .name {
-	color: #ff0000; 
+	color: #008020; 
 }
