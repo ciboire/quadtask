@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
 
   def setup_email(user)
     recipients "#{user.email}"
-    from       %("Quadtask Support" ) # Sets the User FROM Name and Email
+    from       "do-not-reply@vegaphysics.com" # Sets the User FROM Name and Email
     subject    "[Quadtask] New account information.  "
     body       :user => user
     sent_on    Time.now

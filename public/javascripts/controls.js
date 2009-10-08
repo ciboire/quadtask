@@ -536,7 +536,8 @@ Ajax.InPlaceEditor = Class.create({
   createEditField: function() {
     var text = (this.options.loadTextURL ? this.options.loadingText : this.getText());
     var fld;
-    if (1 >= this.options.rows && !/\r|\n/.test(this.getText())) {
+    /*if (1 >= this.options.rows && !/\r|\n/.test(this.getText())) { EDIT by BRT */
+    if (true) {
       fld = document.createElement('input');
       fld.type = 'text';
       var size = this.options.size || this.options.cols || 0;
@@ -546,6 +547,7 @@ Ajax.InPlaceEditor = Class.create({
       fld.rows = (1 >= this.options.rows ? this.options.autoRows : this.options.rows);
       fld.cols = this.options.cols || 40;
     }
+
     fld.name = this.options.paramName;
     fld.value = text; // No HTML breaks conversion anymore
     fld.className = 'editor_field';
@@ -869,7 +871,7 @@ Ajax.InPlaceEditor.prototype.initialize.dealWithDeprecatedOptions = function(opt
 Object.extend(Ajax.InPlaceEditor, {
   DefaultOptions: {
     ajaxOptions: { },
-    autoRows: 3,                                // Use when multi-line w/ rows == 1
+    autoRows: 1,                                // Use when multi-line w/ rows == 1
     cancelControl: 'false',                      // 'link'|'button'|false
     cancelText: 'cancel',
     clickToEditText: 'Click to edit',

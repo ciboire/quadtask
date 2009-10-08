@@ -2,28 +2,40 @@
 
 <div class="containerLeft">
   <div class="quadtreeRectangle">
-    <ul id="quadtreeListId" class="quadtreeList">
-      <% @quadtrees.each do |tree| %>
-        <%= render :partial => 'quadtree_item', :locals => {:tree => tree} %>
-      <% end %>
-    </ul>
+    <% unless @quadtrees.size == 1 %>
+      <ul id="quadtreeListId" class="quadtreeList">
+        <% @quadtrees.each do |tree| %>
+          <%= render :partial => 'quadtree_item', :locals => {:tree => tree} %>
+        <% end %>
+      </ul>
+      <%= sortable_element "quadtreeListId", :constraint => 'vertical', 
+        :containment => ['quadtreeListId'], :url => {:action => 'tree_sort'}, :handle => 'quadtreeItem' %>
+    <% end %>
     
-    <div id="quadtreeAddendum">
-      <% if @quadtrees.size < 3 || (@quadtrees.size >= 3 && current_user.membership_level != "free") %>
-        <%= link_to_remote("Add a quad", :url => {:action => :tree_create}) -%>
+    <div class="manageInstruction">
+      <% if @quadtrees.size > 0 %>
+        <% if @quadtrees.size > 1 %>
+          <%= link_to "Manage groups", manage_url, :class => 'manageInstruction' %>
+        <% else %>
+          <%= link_to "+ Add new group", manage_url, :class => 'manageInstruction' %>
+        <% end %>
       <% else %>
-        Upgrade for more quads
+        <%= link_to "+ Create a group", manage_url, :class => 'manageInstruction' %>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= sortable_element "quadtreeListId", :constraint => 'vertical', 
-  :containment => ['quadtreeListId'], :url => {:action => 'tree_sort'}, :handle => 'quadtreeItem' %>
-
 <div class="containerRightWrapper">
   <div class="containerRight">
     <div class="quadtree">
+      
+      <% unless @quadtrees.size > 0 %>
+        <div class="selectGroup">
+          <br /><br /><br /><br /><br /><br /><br /><br />
+          <%= link_to "+ Create a group", manage_url, :class => 'manageInstructionBig' %>
+        </div>
+      <% else %>
         
       <% ['ImportantUrgent', 'ImportantNotUrgent', 'NotImportantUrgent', 'NotImportantNotUrgent'].each do |quadrant| %>
         <div class=<%="'quadWrapper#{quadrant}'"-%>>
@@ -74,14 +86,13 @@
           'createdTasksNotImportantNotUrgent'], :dropOnEmpty => true,
           :url => {:action => 'task_sort', :quadrant => q}, :handle => 'quadTaskTitle' %>
       <% end %>
+      
+      <% end %>
     </div>
   </div>
 </div>
 
   
-  <div class="footer">
-    <div style="height:1px;width:140px;background-color:#447744"></div>
-    
-    footer here</div>
+<%= render :partial => 'footer' %>
 
 

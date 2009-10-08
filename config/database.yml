@@ -11,7 +11,6 @@
 development:
   adapter: postgresql
   database: quadtask_development
-  host: /tmp
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -34,9 +33,7 @@ development:
 test:
   adapter: postgresql
   database: quadtask_test
-  host: /tmp
 
 production:
   adapter: postgresql
   database: quadtask_production
-  host: /tmp

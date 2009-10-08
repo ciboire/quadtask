@@ -30,8 +30,7 @@ class UsersController < ApplicationController
       current_user.activate!
       
       # Default quadtress for new user
-      Quadtree.create(:user_id => current_user.id, :title => 'work', :position => 0)
-      Quadtree.create(:user_id => current_user.id, :title => 'home', :position => 1)
+      Quadtree.create(:user_id => current_user.id, :title => "#{current_user.email.split('@')[0]}", :position => 0)
       
       flash[:notice] = "Signup complete!"
       render :action => 'activate'

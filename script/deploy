@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ssh quadtask.com 'cd ~/quadtask && git pull -q && RAILS_ENV=production rake db:migrate && rm -f log/*.log && thin restart -e production --servers 2'

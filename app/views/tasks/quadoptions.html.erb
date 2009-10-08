@@ -1,0 +1,66 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'quadoptions'} %>
+
+<div class="containerLeft"></div>
+  <div class="containerRightWrapper">
+    <div class="containerRight">
+    
+      
+    
+      <div class="options">
+        
+        <br /><br /><br />
+        <%= link_to "< back to quadtasks", {:action => :index}, :class => 'backToQuadtasks' %>
+        
+        <table style="margin-top: 40px;background-color:#eeffee">
+          <thead>
+            <td>Group</td>
+            <td>Edit</td>
+            <td>Remove</td>
+          </thead>
+          <tr><td><span style="height:20px">&nbsp;</span></td></tr>
+          <% if @quadtrees.size == 0 %>
+            <tr>
+              <td width='240px'></td>
+              <td width='40px'></td>
+              <td width='40px'></td>
+            </tr>
+          <% end %>
+          <% @quadtrees.each do |tree| %>
+          <tr>
+            <td width='240px'><span id=<%= "'quadtreeTitle#{tree.id}'" -%> class='quadtreeOptionsTitle'>
+              <%= tree.title %></span>
+            </td>
+            <td width='40px'><span id=<%= "'quadtreeHandle#{tree.id}'" -%> style="cursor:pointer;">
+              <%= image_tag('pencil-light.png', :mouseover => 'pencil-hot.png', :border => 0, :title => 'edit title') %>
+            </span>
+            </td>
+            <td width='40px'><span id=<%= "'quadtreeDelete#{tree.id}'" -%> style="cursor:pointer">
+              <%= link_to image_tag('remove-gray.png', :mouseover => 'remove.png', :border => 0,
+              :title => 'delete quadtree', :class => 'removeIconWhite'), {:controller => :tasks, :action => "tree_delete", :id => tree.id},
+              {:confirm => "Delete this group and all its tasks?"} %>
+            </span></td>
+            
+          </tr>
+          <%= in_place_editor	"quadtreeTitle#{tree.id}",
+          { :url=> url_for(:action=>"tree_edit" ,	:id=>tree.id), :cols => 30, :rows => 1,
+          :click_to_edit_text => 'edit title', :external_control => "quadtreeHandle#{tree.id}", :external_control_only => true,
+          :highlight_color => '#ffff00', :highlight_end_color => '#ffffff' } -%>
+        <% end %>
+      </table>
+
+      <div class="quadtreeOptionsAddendum">
+        <% if @quadtrees.size < 3 || (@quadtrees.size >= 3 && current_user.membership_level != "free") %>
+          <%= link_to "+ Add a group", :controller => 'tasks', :action => 'tree_create', :id => 0 -%>
+        <% else %>
+          Upgrade for more quads
+        <% end %>
+      </div>   
+      
+      </div> 
+    
+    </div>
+  </div>
+</div>
+
+
+  <%= render :partial => 'footer' %>

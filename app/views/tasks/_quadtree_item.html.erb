@@ -1,23 +1,10 @@
-<li id=<%= "'quadtree_" + tree.id.to_s + "'" -%> class="quadtreeItem">
-  <span id=<%= "'quadtreeinner" + tree.id.to_s + "'" -%>
-    onmouseover=
-    <%="$('quadtreeHandle#{tree.id}').style.visibility='visible';$('quadtreeDelete#{tree.id}').style.visibility='visible';" -%>
-    onmouseout=
-    <%= "$('quadtreeHandle#{tree.id}').style.visibility='hidden';$('quadtreeDelete#{tree.id}').style.visibility='hidden';" -%>>
-    <span class='quadtreeGroup'>
-      <span id=<%= "'quadtreeTitle#{tree.id}'" -%> class='quadtreeTitle'><%= tree.title %></span>
-        <span id=<%= "'quadtreeHandle#{tree.id}'" -%> style="visibility:hidden;cursor:pointer">
-          <%= image_tag('pencil-light.png', :mouseover => 'pencil-hot.png', :border => 0, :title => 'edit title') %>
-        </span>
-        <span id=<%= "'quadtreeDelete#{tree.id}'" -%> style="padding-left:6px;visibility:hidden;cursor:pointer">
-          <%= link_to_remote(image_tag('remove-gray.png', :mouseover => 'remove.png', :border => 0,
-            :title => 'delete quadtree', :class => 'removeIconGreen'), :url => { :action => "tree_delete", :tree_id => tree.id }) %>
-        </span>
-      </span>
+<li id=<%= "'quadtree_" + tree.id.to_s + "'" -%> class="<%= 'quadtreeItem' + (tree.id == session[:quadtree_id]).to_s %>">
+
+  <span id=<%= "'quadtreeinner" + tree.id.to_s + "'" -%>>
+            <span style='margin-right:10px;'><%= link_to image_tag(
+            (tree.id == session[:quadtree_id] ? 'checkbox-checked.png' : 'checkbox-unchecked.png'), :border => 0), :action => :tree_check, :id => tree.id %></span>
+             <span class='quadtreeTitle'><%= tree.title %></span>
+    
+      
     </span>
-    <%= in_place_editor	"quadtreeTitle#{tree.id}", 
-      { :url=> url_for(:action=>"tree_edit" ,	:id=>tree.id), :cols => 25, :rows => 1,
-        :click_to_edit_text => 'edit title', :external_control => "quadtreeHandle#{tree.id}", :external_control_only => true,
-        :highlight_color => '#ffff00', :highlight_end_color => '#00ff00' } -%>
-  </span>
 </li>

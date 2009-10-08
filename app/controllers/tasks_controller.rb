@@ -16,8 +16,12 @@ class TasksController < ApplicationController
   #
   def index
     if logged_in?
-      session[:quadtree_id] = (session[:quadtree_id] ? session[:quadtree_id] : 
-        Quadtree.find(:first, :conditions => {:user_id => current_user.id}, :order => :position).id)
+      @quadtrees = Quadtree.find(:all, :conditions => {:user_id => current_user.id}, :order => :position)
+      if !session[:quadtree_id]
+        if @quadtrees.size > 0
+          session[:quadtree_id] = @quadtrees[0].id
+        end
+      end
       @tasks_important_urgent = Task.find(:all, :conditions => {:is_important => true,
         :is_urgent => true, :quadtree_id => session[:quadtree_id]}, :order => :position)
       @tasks_not_important_urgent = Task.find(:all, :conditions => {:is_important => false, 
@@ -26,7 +30,7 @@ class TasksController < ApplicationController
         :is_urgent => false, :quadtree_id => session[:quadtree_id]}, :order => :position)
       @tasks_not_important_not_urgent = Task.find(:all, :conditions => {:is_important => false, 
         :is_urgent => false, :quadtree_id => session[:quadtree_id]}, :order => :position)
-      @quadtrees = Quadtree.find(:all, :conditions => {:user_id => current_user.id}, :order => :position)
+
     else
       redirect_to :welcome
     end
@@ -117,19 +121,12 @@ class TasksController < ApplicationController
 
 
   def tree_delete
-    @tree = Quadtree.find(params[:tree_id])
-    render :update do |page|
-      page.visual_effect :fade, 'quadtree_' + @tree.id.to_s, :duration => 1.0
-      page.delay(1.5) do
-        page.remove('quadtree_' + @tree.id.to_s)
-        page.sortable "quadtreeListId", :constraint => 'vertical', 
-          :containment => ['quadtreeListId'], :url => {:action => 'tree_sort'}, :handle => 'quadtreeItem'
-        @tree.destroy
-        @quadtrees = Quadtree.find(:all, :conditions => {:user_id => current_user.id}, :order => :position)
-        page.replace_html 'quadtreeAddendum', :partial => 'quadtree_addendum', :locals => {:quadtrees => @quadtrees} 
-        page << "document.getElementById('quadtreeAddendum').scrollIntoView(true);"
-      end
+    if params[:id] == session[:quadtree_id]
+      session[:quadtree_id] = nil
     end
+    @tree = Quadtree.find(params[:id])
+    @tree.destroy
+    redirect_to manage_url
   end
   
   
@@ -141,6 +138,12 @@ class TasksController < ApplicationController
     else
       render :nothing => true
     end
+  end
+  
+  
+  def tree_check
+    session[:quadtree_id] = params[:id]
+    redirect_to 'index'
   end
   
   
@@ -210,21 +213,20 @@ class TasksController < ApplicationController
   def tree_create
     position = Quadtree.maximum(:position, :conditions => {:user_id => current_user.id}) ?
       Quadtree.maximum(:position, :conditions => {:user_id => current_user.id}) + 1 : 0
-    @quadtree = Quadtree.new(:user_id => current_user.id, :title => 'new quad', :position => position)
+    @quadtree = Quadtree.new(:user_id => current_user.id, :title => "new group", :position => position)
     
     if @quadtree.save
-      @quadtrees = Quadtree.find(:all, :conditions => {:user_id => current_user.id}, :order => :position)
-      render :update do |page|
-        page.insert_html :bottom, 'quadtreeListId', :partial => 'quadtree_item', :locals => {:tree => @quadtree}
-        page.sortable "quadtreeListId", :constraint => 'vertical', 
-          :containment => ['quadtreeListId'], :url => {:action => 'tree_sort'}, :handle => 'quadtreeItem'
-        page.replace_html 'quadtreeAddendum', :partial => 'quadtree_addendum', :locals => {:quadtrees => @quadtrees} 
-        page << "document.getElementById('quadtreeAddendum').scrollIntoView(true);"
-      end
+      redirect_to manage_url
     else
       render :nothing => true
     end
   end
+  
+  def tree_manage
+    @quadtrees = Quadtree.find(:all, :conditions => {:user_id => current_user.id}, :order => :position)
+    render :action => 'quadoptions'
+  end
+    
   
 
   # Private functions
