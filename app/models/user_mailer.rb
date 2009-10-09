@@ -29,7 +29,6 @@ class UserMailer < ActionMailer::Base
     from          "Quadtask <do-not-reply@vegaphysics.com>"
     subject       "[Quadtask] New account information. "
     sent_on       Time.now
-    content_type  "text/html"
-    body            :user => user
+    body          :user => user
   end
 end
