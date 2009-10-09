@@ -305,6 +305,7 @@ a.signupLink:hover
 .quadWrapperImportantUrgent
 {
     display: inline-block;
+    float:left;
     height: 50%;
     width: 50%;
 }
@@ -320,6 +321,7 @@ a.signupLink:hover
 .quadWrapperNotImportantUrgent
 {
     display: inline-block;
+    float:left;
     height: 50%;
     width: 50%;
 }
