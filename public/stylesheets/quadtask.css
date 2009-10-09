@@ -55,6 +55,18 @@ a.backToQuadtasks
     text-decoration:underline;
 }
 
+a.mailClick
+{
+    text-decoration: underline;
+    background-color:transparent;
+    color: #008020;
+}
+
+a.mailClick:hover
+{
+    color:#006010;
+}
+
 .icon
 {
     position:absolute;
