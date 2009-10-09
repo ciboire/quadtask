@@ -252,13 +252,13 @@ class TasksController < ApplicationController
 
     if tx_token.blank?
       logger.info('Missing PayPal transaction token')
-      flash[:error] = bad_transaction
+      flash[:alert] = bad_transaction
       return
     end
 
     if Payment.find_by_tx_token(tx_token)
       logger.info("Duplicate PayPal transaction token #{tx_token}")
-      flash[:error] = "We have already completed transaction #{tx_token}.<br /><br />Thank you for your payment.<br /><br />" \
+      flash[:alert] = "We have already completed transaction #{tx_token}.<br /><br />Thank you for your payment.<br /><br />" \
       + " A receipt for your purchase was emailed to you."
       return
     end
@@ -283,7 +283,7 @@ class TasksController < ApplicationController
 
     unless 'SUCCESS' == status
       logger.info("Unexpected PDT status: #{status}")
-      flash[:error] = bad_transaction
+      flash[:alert] = bad_transaction
       return
     end
 
@@ -298,7 +298,7 @@ class TasksController < ApplicationController
 
     unless receiver_email == 'admin@vegaphysics.com'
       logger.info("Unexpected PDT receiver email: #{receiver_email}")
-      flash[:error] = bad_transaction
+      flash[:alert] = bad_transaction
       return
     end
 
@@ -314,7 +314,7 @@ class TasksController < ApplicationController
     # Save a copy of the transaction in case there is a dispute
     Payment.create(:description => description, :user_id => user_id, :user_email => user_email,
       :amount => payment_gross, :tx_token => tx_token)
-    flash[:success] = 'Thank you for your payment!  Your account upgrade is complete.'
+    flash[:notice] = 'Thank you for your payment!  Your account upgrade is complete.'
     
     # Update User table to reflect successful transaction
     @user = User.find(user_id)

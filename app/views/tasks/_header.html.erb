@@ -19,6 +19,14 @@
         <%= link_to "UPGRADE", upgrade_url, :class => "headerBarLink" -%>
       </div>
     <% end %>
+    <div class="headerBar" style="color:#77dd77">
+      |
+    </div>
+    <div class="headerBar">
+      <div style="font-size:0.7em; color:#008020; font-weight:600">
+        <%= current_user.email -%>
+      </div>
+    </div>
   
   <% end %>
   
