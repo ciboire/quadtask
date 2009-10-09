@@ -172,7 +172,6 @@ a.forgotPassword
     text-align:left;
     font-size:1.7em;
     line-height: 1.2em;
-    width:80%;
     padding: 40px;
     border: 10px solid #008020;
     margin: 40px;
@@ -247,7 +246,6 @@ a.signupLink:hover
     text-align:left;
     font-size:1.7em;
     line-height: 1.2em;
-    width:50%;
     padding: 40px;
     border: 10px solid #008020;
     margin: 40px;
