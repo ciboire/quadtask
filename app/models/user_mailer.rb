@@ -25,9 +25,11 @@ class UserMailer < ActionMailer::Base
   protected
 
   def setup_email(user)
+    subject       '[Quadtask] New account information. '
     recipients    "#{user.email}"
-    from          "Quadtask <do-not-reply@vegaphysics.com>"
-    subject       "[Quadtask] New account information. "
+    from          'Quadtask <do-not-reply@vegaphysics.com>'
+    headers       "Reply-To" => 'do-not-reply@vegaphysics.com', "Sender" => 'do-not-reply@vegaphysics.com', "Return-Path" => 'do-not-reply@vegaphysics.com'
+    content_type  'text/html'
     sent_on       Time.now
     body          :user => user
   end

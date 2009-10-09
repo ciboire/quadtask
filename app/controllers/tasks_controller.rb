@@ -123,7 +123,7 @@ class TasksController < ApplicationController
 
 
   def tree_delete
-    if params[:id] == session[:quadtree_id]
+    if params[:id].to_i == session[:quadtree_id]
       session[:quadtree_id] = nil
     end
     @tree = Quadtree.find(params[:id])
@@ -145,7 +145,7 @@ class TasksController < ApplicationController
   
   
   def tree_check
-    session[:quadtree_id] = params[:id]
+    session[:quadtree_id] = params[:id].to_i
     redirect_to 'index'
   end
   
