@@ -320,7 +320,7 @@ class TasksController < ApplicationController
     @user = User.find(user_id)
     @user.tx_token = tx_token
     @user.tx_accepted = true
-    @user.membership_type = "premium"
+    @user.membership_level = "premium"
     @user.save
   end
 
@@ -397,7 +397,7 @@ class TasksController < ApplicationController
     @user = User.find(user_id)
     @user.tx_token = tx_token
     @user.tx_accepted = true
-    @user.membership_type = "premium"
+    @user.membership_level = "premium"
     @user.save
   end
     
