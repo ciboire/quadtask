@@ -1,0 +1,44 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'upgrade'} %>
+
+<div class="containerLeft"></div>
+  <div class="containerRightWrapper">
+    <div class="containerRight">
+    
+      
+    
+      <div class="upgrade">
+        
+        <br /><br /><br />
+        <%= link_to "< back to tasks", {:action => :index}, :class => 'backToQuadtasks' %>
+        
+        <br /><br /><br />
+        <div style="font-size:2.0em;line-height:2.5em;color:#008020">
+          <div style="float:left">
+          UNLIMITED Groups<br />
+          UNLIMITED Tasks<br />
+          $2.95 / month<br />
+          </div>
+          <div style="margin-left:70px;margin-top:15px;padding:20px;border:5px double #00a040;display:inline-block">
+            <div style="font-weight:600;float:left">
+              Upgrade now ===> &nbsp;&nbsp;
+            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float:left">
+              <input type="hidden" name="custom" value="<%= current_user.id.to_s + " " + current_user.email.to_s -%>" />
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="8784289">
+              <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+            <div style="font-size:0.5em;line-height:1.4em;color:#444444;clear:both;text-align:center">
+              (You will be redirected to the PayPal page of our parent company,<br /> Vega Physics, LLC)
+            </div>
+          </div>
+        </div>
+      </div> 
+    
+    </div>
+  </div>
+</div>
+
+
+  <%= render :partial => 'footer' %>

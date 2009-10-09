@@ -5,7 +5,7 @@
     :class => "iconLink") -%>
   </div>
 
-  <% unless ['login', 'signup', 'forgot_password', 'created_password', 'quadoptions'].include?(comes_from) %>
+  <% unless ['login', 'signup', 'forgot_password', 'created_password'].include?(comes_from) %>
     
     <div style="height:10%;float:left"></div>
     <div class="headerBar">
@@ -14,9 +14,11 @@
     <div class="headerBar">
       <%= link_to "FACEBOOK", "http://www.facebook.com/pages/QuadTask/173273415305", :class => "headerBarLink" -%>
     </div>
-    <div class="headerBar">
-      <%= link_to "UPGRADE", "http://xyz.com", :class => "headerBarLink" -%>
-    </div>
+    <% if current_user.membership_level == "free" %>
+      <div class="headerBar">
+        <%= link_to "UPGRADE", upgrade_url, :class => "headerBarLink" -%>
+      </div>
+    <% end %>
   
   <% end %>
   

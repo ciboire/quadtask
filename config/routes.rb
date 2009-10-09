@@ -49,6 +49,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
+  map.faq '/faq', :controller => 'tasks', :action => 'faq'
+  map.upgrade '/upgrade', :controller => 'tasks', :action => 'upgrade'
   map.manage '/manage', :controller => 'tasks', :action => 'tree_manage' 
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate'
   map.signup '/signup', :controller => 'users', :action => 'new'

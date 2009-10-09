@@ -88,13 +88,13 @@ a.headerBarLink
 {
     background-color: #99ff99;
     text-decoration: none;
-    color: #006020;
+    color: #00a040;
     font-weight:600;
 }
 
 a.headerBarLink:hover
 {
-    color: #00b060;
+    color: #006020;
 }
 
 .bigfont
@@ -559,6 +559,7 @@ a.signupLink:hover
     cursor: pointer;
     margin-bottom: -1px;
     background-color:#99ff99;
+    color: #00c040;
 }
 
 .quadtreeItemtrue
@@ -571,6 +572,7 @@ a.signupLink:hover
     cursor: pointer;
     margin-bottom: -1px;
     background-color: white;
+    color: #006010;
 }
 
 .manageInstructionBig
@@ -600,24 +602,24 @@ a.manageInstructionBig:hover
 a.manageInstruction
 {
     text-decoration: underline;
-    color: #006010;
+    color: #00c050;
 }
 
 a.footerLink
 {
     text-decoration: underline;
-    color: #00c050;
+    color: #00c040;
     background-color: #99ff99;
 }
 
 a.footerLink:hover
 {
-    color: #00e060;
+    color: #008020;
 }
 
 a.manageInstruction:hover
 {
-    color: #00C050;
+    color: #008020;
 }
 
 .quadtreeTitle
@@ -636,9 +638,56 @@ a.manageInstruction:hover
     height:100%;
 }
 
+a.upgradeTasks
+{
+    text-decoration:none;
+    color:#888888;
+    background-color:transparent;
+}
+
+a.upgradeTasks:hover
+{
+    color:black;
+}
+
+.faq
+{
+    margin-left: 50px;
+    padding-right:50px;
+    font-size: 1.5em;
+    line-height: 1.8em;
+    height:100%;
+    overflow:auto;
+}
+
+.faqQuestionTop
+{
+    font-weight:600;
+}
+
+.faqQuestionBottom
+{
+    font-weight:600;
+}
+
+.faqAnswerBottom
+{
+    margin-bottom: 15px;
+}
+
 .options
 {
-    margin-left:50px;
+    margin-left:100px;
+    height:100%;
+    overflow:auto;
+}
+
+.upgrade
+{
+    margin-left: 100px;
+    height:100%;
+    padding-right: 50px;
+    overflow:auto;
 }
 
 .options table thead

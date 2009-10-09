@@ -1,0 +1,44 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'faq'} %>
+
+<div class="containerLeft"></div>
+  <div class="containerRightWrapper">
+    <div class="containerRight">
+    
+      <div class="faq">
+        
+        <br />
+        <div style="font-size:0.7em">
+          <%= link_to "< back to tasks", {:action => :index}, :class => 'backToQuadtasks' %>
+        </div>
+        <br />
+        
+
+        <% @faqs.each do |faq| %>
+          <div class="faqQuestionTop">
+            <a href="#<%=faq.id-%>"><%="#{faq.question}"-%></a>
+          </div>
+        <% end %>
+        
+        <br /><br />
+        <hr /><br />
+        <% @faqs.each do |faq| %>
+          <div class="faqQuestionBottom">
+            <a name="<%="#{faq.id}"-%>"><%=faq.question-%></a>
+          </div>
+          <div class="faqAnswerBottom">
+            <%=faq.answer-%>
+          </div>
+        <% end %>
+        
+        <br />
+        <div style="font-size:0.7em">
+          <%= link_to "< back to tasks", {:action => :index}, :class => 'backToQuadtasks' %>
+        </div>
+        <br />
+        
+    </div>
+  </div>
+</div>
+
+
+  <%= render :partial => 'footer' %>

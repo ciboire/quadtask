@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002005401) do
+ActiveRecord::Schema.define(:version => 20091009012722) do
+
+  create_table "faqs", :force => true do |t|
+    t.string   "question"
+    t.string   "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.string   "tx_token"
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.string   "user_email"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "quadtrees", :force => true do |t|
     t.string   "title"
@@ -31,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20091002005401) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "tx_token"
+    t.boolean  "tx_accepted"
     t.string   "membership_level",                        :default => "free"
     t.datetime "membership_modified_at"
     t.string   "email"

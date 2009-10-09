@@ -1,10 +1,8 @@
-<li id=<%= "'quadtree_" + tree.id.to_s + "'" -%> class="<%= 'quadtreeItem' + (tree.id == session[:quadtree_id]).to_s %>">
+<li id=<%= "'quadtree_" + tree.id.to_s + "'" -%> class="<%= 'quadtreeItem' + (tree.id.to_s == session[:quadtree_id]).to_s %>">
 
   <span id=<%= "'quadtreeinner" + tree.id.to_s + "'" -%>>
-            <span style='margin-right:10px;'><%= link_to image_tag(
-            (tree.id == session[:quadtree_id] ? 'checkbox-checked.png' : 'checkbox-unchecked.png'), :border => 0), :action => :tree_check, :id => tree.id %></span>
+            <span style='margin-right:10px;vertical-align:center'><%= link_to image_tag(
+            (tree.id.to_s == session[:quadtree_id] ? 'tree-selected.png' : 'tree-unselected.png'), :border => 0), :action => :tree_check, :id => tree.id %></span>
              <span class='quadtreeTitle'><%= tree.title %></span>
-    
-      
     </span>
 </li>

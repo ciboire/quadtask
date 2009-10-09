@@ -9,7 +9,7 @@
       <div class="options">
         
         <br /><br /><br />
-        <%= link_to "< back to quadtasks", {:action => :index}, :class => 'backToQuadtasks' %>
+        <%= link_to "< back to tasks", {:action => :index}, :class => 'backToQuadtasks' %>
         
         <table style="margin-top: 40px;background-color:#eeffee">
           <thead>
@@ -37,7 +37,7 @@
             <td width='40px'><span id=<%= "'quadtreeDelete#{tree.id}'" -%> style="cursor:pointer">
               <%= link_to image_tag('remove-gray.png', :mouseover => 'remove.png', :border => 0,
               :title => 'delete quadtree', :class => 'removeIconWhite'), {:controller => :tasks, :action => "tree_delete", :id => tree.id},
-              {:confirm => "Delete this group and all its tasks?"} %>
+              {:confirm => "Permanently remove this group and all its tasks?"} %>
             </span></td>
             
           </tr>
@@ -52,7 +52,7 @@
         <% if @quadtrees.size < 3 || (@quadtrees.size >= 3 && current_user.membership_level != "free") %>
           <%= link_to "+ Add a group", :controller => 'tasks', :action => 'tree_create', :id => 0 -%>
         <% else %>
-          Upgrade for more quads
+          <%= link_to "Upgrade to get unlimited groups >>>", upgrade_url %>
         <% end %>
       </div>   
       

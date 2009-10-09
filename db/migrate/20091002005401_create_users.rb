@@ -1,6 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table "users", :force => true do |t|
+      t.string :tx_token
+      t.boolean :tx_accepted
       t.string :membership_level, :default => 'free'
       t.datetime :membership_modified_at
       t.string :email, :remember_token

@@ -4,12 +4,12 @@
 .fan_box
 .full_widget 
 .connect_top {
-	border: none;
+	border: 1px solid #99ff99;
 	background-color: #99ff99;
 }
 .fan_box
 .full_widget {
-	border: none;
+	border: 1px solid #99ff99;
 }
 .connect_top a {
 	color: #008020;
@@ -20,12 +20,13 @@
 .fan_box
 .connections {
 	background-color: #99ff99;
-	border: none;
+	border: 1px solid #99ff99;
 	color: #008020;
 }
 .fan_box
 .connections_grid
 .grid_item
 .name {
-	color: #008020; 
+	color: #008020;
+	border: 1px solid #99ff99;
 }

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tx_token: MyString
+  amount: 9.99
+  user_id: 1
+  user_email: MyString
+  description: MyString
+
+two:
+  tx_token: MyString
+  amount: 9.99
+  user_id: 1
+  user_email: MyString
+  description: MyString

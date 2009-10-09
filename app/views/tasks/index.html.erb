@@ -56,21 +56,29 @@
             <div class="quadSquare" id=<%= "'quad_square#{quadrant}'"-%>>
               <ul id=<%="'createdTasks#{quadrant}'"-%> class="unorderedList" >
                 <% if quadrant == 'ImportantUrgent' %>
+                  <% highlight_end_color = '#fff0f0' %>
                   <% @tasks_important_urgent.each do |task| %>
-                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant,
+                    :highlight_end_color => highlight_end_color } %><% end %>
                 <% elsif quadrant == 'ImportantNotUrgent' %>
+                  <% highlight_end_color = '#f0fff0' %>
                   <% @tasks_important_not_urgent.each do |task| %>
-                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant,
+                    :highlight_end_color => highlight_end_color } %><% end %>
                 <% elsif quadrant == 'NotImportantUrgent' %>
+                  <% highlight_end_color = '#f0f0f0' %>
                   <% @tasks_not_important_urgent.each do |task| %>
-                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant,
+                    :highlight_end_color => highlight_end_color} %><% end %>
                 <% else %>
+                  <% highlight_end_color = '#f0f0f0' %>
                   <% @tasks_not_important_not_urgent.each do |task| %>
-                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant} %><% end %>
+                  <%= render :partial => 'item_task', :locals => {:task => task, :quadrant => quadrant,
+                    :highlight_end_color => highlight_end_color } %><% end %>
                 <% end %>
               </ul>
               <div id=<%= "'newTaskEditorOuter#{quadrant}'" -%>>
-                <%= render :partial => 'new_task_editor', :locals => {:quadrant => quadrant} %>
+                <%= render :partial => 'new_task_editor', :locals => {:quadrant => quadrant, :highlight_end_color => highlight_end_color} %>
               </div>
               
               
