@@ -25,12 +25,12 @@ class UserMailer < ActionMailer::Base
   protected
 
   def setup_email(user)
-    @recipients   = "#{user.email}"
-    @from         = "Quadtask <do-not-reply@vegaphysics.com>"
+    recipients    "#{user.email}"
+    from          "Quadtask <do-not-reply@vegaphysics.com>"
     headers         "Reply-to" => "support@vegaphysics.com"
-    @subject      = "[Quadtask] New account information. "
-    @sent_on      = Time.now
-    @content_type = "text/html"
+    subject       "[Quadtask] New account information. "
+    sent_on       Time.now
+    content_type  "text/html"
     body            :user => user
   end
 end
