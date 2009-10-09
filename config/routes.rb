@@ -49,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
+  map.thanks '/thanks', :controller => 'tasks', :action => 'thanks'
   map.faq '/faq', :controller => 'tasks', :action => 'faq'
   map.upgrade '/upgrade', :controller => 'tasks', :action => 'upgrade'
   map.manage '/manage', :controller => 'tasks', :action => 'tree_manage' 
