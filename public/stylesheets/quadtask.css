@@ -762,7 +762,7 @@ a img{border:0; }
 /* Header */
 #header{height:116px; background:url(/images/header.gif) repeat-x 0 0; overflow:hidden; position:relative; margin-top:-30px; }
 .frame #header{height:328px; background:url(/images/header2.gif) repeat-x}
-.frame #header .slogan {background:url(/images/creatica.jpg) no-repeat right 0; width:945px; height:192px; margin-top:-30px; padding-top:53px; position:relative; padding-left:9px; }
+.frame #header .slogan {background:url(/images/quadtask-mini.jpg) no-repeat right 0; width:945px; height:192px; margin-top:-30px; padding-top:53px; position:relative; padding-left:9px; }
 .frame #header h2{font-size: 29px; line-height:29px; color:#fff; text-transform: uppercase; width:450px; height:70px; overflow:hidden;  position:relative; text-align: left; font-weight: bold;}
 .frame #header h3{font-size: 17px; text-transform: uppercase; width:450px; line-height:17px; font-weight: bold; position:relative; text-align: left;}
 .frame #header h1#logo a{background:url(/images/logo2.gif); height:70px;}
