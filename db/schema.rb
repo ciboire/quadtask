@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091009012722) do
+ActiveRecord::Schema.define(:version => 20091010155245) do
 
   create_table "faqs", :force => true do |t|
     t.string   "question"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(:version => 20091009012722) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "important_urgent",         :default => "IMPORTANT / URGENT"
+    t.string   "important_not_urgent",     :default => "IMPORTANT / not urgent"
+    t.string   "not_important_urgent",     :default => "not important / URGENT"
+    t.string   "not_important_not_urgent", :default => "not important / not urgent"
   end
 
   create_table "tasks", :force => true do |t|

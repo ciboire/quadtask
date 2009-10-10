@@ -74,7 +74,23 @@ class TasksController < ApplicationController
       render :text => @tree.title
     end
   end
-
+  
+  def quad_edit
+    @tree = Quadtree.find(session[:quadtree_id])
+    new_title = params[:value] == '' ? 'unlabeled' : params[:value]
+    case params[:quadrant]
+    when "ImportantUrgent"
+      @tree.important_urgent = new_title
+    when "ImportantNotUrgent"
+      @tree.important_not_urgent = new_title
+    when "NotImportantUrgent"
+      @tree.not_important_urgent = new_title
+    else
+      @tree.not_important_not_urgent = new_title
+    end
+    @tree.save
+    render :text => new_title
+  end
   
 	def task_sweep
     quadrant = params[:quadrant]
