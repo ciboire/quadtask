@@ -30,7 +30,6 @@ class TasksController < ApplicationController
         :is_urgent => false, :quadtree_id => session[:quadtree_id]}, :order => :position)
       @tasks_not_important_not_urgent = Task.find(:all, :conditions => {:is_important => false, 
         :is_urgent => false, :quadtree_id => session[:quadtree_id]}, :order => :position)
-
     else
       redirect_to :welcome
     end
@@ -162,7 +161,7 @@ class TasksController < ApplicationController
   
   def tree_check
     session[:quadtree_id] = params[:id].to_i
-    redirect_to 'index'
+    redirect_to home_url
   end
   
   
