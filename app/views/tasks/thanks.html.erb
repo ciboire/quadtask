@@ -1,0 +1,26 @@
+<%= render :partial => 'tasks/header', :locals => {:comes_from => 'thanks'} %>
+
+
+<div class="containerLeft"></div>
+<div class="containerRightWrapper">
+  <div class="containerRight">
+    <div class="signup">
+      <div class="signupInner">
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert"><%= flash[:alert] %></div>
+        <% end %>
+        <br />
+        <br />
+        <center>
+          <%= link_to "Click here", home_url, :class => "mailClick" -%> to return to Quadtask!
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <%= render :partial => 'tasks/footer' %>
