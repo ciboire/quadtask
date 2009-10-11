@@ -435,7 +435,6 @@ a.signupLink:hover
     height: 85%;
     background-color: #99ff99;
     z-index: 100;
-    overflow:auto;
 }
 
 .footer
@@ -649,6 +648,7 @@ a.manageInstruction:hover
 .quadtreeRectangle
 {
     height:100%;
+    overflow:auto;
 }
 
 a.upgradeTasks
