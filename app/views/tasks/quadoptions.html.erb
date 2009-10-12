@@ -44,7 +44,8 @@
           <%= in_place_editor	"quadtreeTitle#{tree.id}",
           { :url=> url_for(:action=>"tree_edit" ,	:id=>tree.id), :cols => 30, :rows => 1,
           :click_to_edit_text => 'edit title', :external_control => "quadtreeHandle#{tree.id}", :external_control_only => true,
-          :highlight_color => '#ffff00', :highlight_end_color => '#ffffff' } -%>
+          :highlight_color => '#ffff00', :highlight_end_color => '#ffffff',
+          :submit_on_blur => 'true' } -%>
         <% end %>
       </table>
 

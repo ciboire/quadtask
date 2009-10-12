@@ -19,5 +19,5 @@
   <%= in_place_editor	"quadTaskTitle#{task.id}", 
     { :url=> url_for(:action=>"task_edit" ,	:id=>task.id, :quadrant => quadrant), :cols => 25, :rows => 1,
     :click_to_edit_text => 'edit task', :external_control => "quadTaskHandle#{task.id}", :external_control_only => true,
-    :highlight_end_color => highlight_end_color } -%>
+    :highlight_end_color => highlight_end_color, :submitOnBlur => true } -%>
 </span>

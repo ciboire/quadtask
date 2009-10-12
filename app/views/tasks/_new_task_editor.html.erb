@@ -6,7 +6,7 @@
 </div>
 <%= in_place_editor	"newTask#{quadrant}", 
   {:url=> url_for(:action=>"task_create", :quadrant => quadrant), :cols => 40, :rows => 1,
-  :click_to_edit_text => 'add new task', :highlight_end_color => highlight_end_color} -%>
+  :click_to_edit_text => 'add new task', :highlight_end_color => highlight_end_color, :submitOnBlur => true} -%>
 <% else %>
 <div class="newTaskEditor">
   <div id=<%="'newTask#{quadrant}'"-%> class="newTask"><%= link_to "Upgrade to get unlimited tasks >>>", upgrade_url,

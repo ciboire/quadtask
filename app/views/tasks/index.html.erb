@@ -46,22 +46,26 @@
                   <span id="ImportantUrgentTitle"><%= Quadtree.find(session[:quadtree_id]).important_urgent -%></span>
                   <%= in_place_editor	"ImportantUrgentTitle", 
                   { :url=> url_for(:action=>"quad_edit" ,	:quadrant => quadrant), :cols => 25, :rows => 1,
-                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff" } -%>
+                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff",
+                  :submitOnBlur => true } -%>
                 <% elsif quadrant == 'ImportantNotUrgent' %> 
                   <span id="ImportantNotUrgentTitle"><%= Quadtree.find(session[:quadtree_id]).important_not_urgent -%></span>
                   <%= in_place_editor	"ImportantNotUrgentTitle", 
                   { :url=> url_for(:action=>"quad_edit" ,	:quadrant => quadrant), :cols => 25, :rows => 1,
-                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff" } -%>
+                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff",
+                  :submitOnBlur => true } -%>
                 <% elsif quadrant == 'NotImportantUrgent' %>
                   <span id="NotImportantUrgentTitle"><%= Quadtree.find(session[:quadtree_id]).not_important_urgent -%></span>
                   <%= in_place_editor	"NotImportantUrgentTitle", 
                   { :url=> url_for(:action=>"quad_edit" ,	:quadrant => quadrant), :cols => 25, :rows => 1,
-                    :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff" } -%>
+                    :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff",
+                    :submitOnBlur => true } -%>
                 <% else %>
                   <span id="NotImportantNotUrgentTitle"><%= Quadtree.find(session[:quadtree_id]).not_important_not_urgent -%></span>
                   <%= in_place_editor	"NotImportantNotUrgentTitle", 
                   { :url=> url_for(:action=>"quad_edit" ,	:quadrant => quadrant), :cols => 25, :rows => 1,
-                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff" } -%>
+                  :click_to_edit_text => 'edit label', :highlight_color => "#ffffff", :highlight_end_color => "#ffffff",
+                  :submitOnBlur => true } -%>
                 <% end %>
                 <div class="quadDelete">
                   <%= link_to_remote(image_tag('trash-light.png', :mouseover => 'trash-hot.png', :border => 0,
