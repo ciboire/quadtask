@@ -795,7 +795,7 @@ h1#logo a{
 	display: block;
 	text-indent: -4000px;
 	height:86px;
-	background:url(/images/logo.png);
+	background:url(/images/logo.gif);
 }
 h3{text-transform: uppercase; font-size: 16px; }
 h4{font-size: 12px;}
