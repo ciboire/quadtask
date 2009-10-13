@@ -894,7 +894,7 @@ Object.extend(Ajax.InPlaceEditor, {
     savingText: 'Saving...',
     size: 0,
     stripLoadedTextTags: false,
-    submitOnBlur: true,
+    submitOnBlur: false,
     textAfterControls: '    ',
     textBeforeControls: '    ',
     textBetweenControls: '    '
